@@ -11,3 +11,181 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.css-heg063-MuiTabs-flexContainer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  justify-content: space-around;
+
+}
+
+.css-heg063-MuiTabs-flexContainer {
+  display: flex;
+  justify-content: evenly !important;
+}
+
+.css-y5xvc8-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #347DFC;
+}
+
+.css-11yukd5-MuiTabs-indicator {
+  position: absolute;
+  height: 2px;
+  bottom: 0;
+  width: 100%;
+  -webkit-transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #347DFC !important;
+}
+
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 0px !important;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+
+.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input {
+  font: "Poppins" !important;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 1px;
+  padding: 8.5px 14px;
+}
+
+
+.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 1px;
+  padding: 8.5px 14px;
+}
+
+
+/* //textfeild CSS// */
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "Poppins" !important;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  border-radius: 13px !important;
+}
+
+.css-1pysi21-MuiFormLabel-root-MuiInputLabel-root {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Poppins" !important;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  padding: 0;
+  position: relative;
+  display: block;
+  transform-origin: top left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 24px);
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: translate(14px, 9px) scale(1);
+  -moz-transform: translate(14px, 9px) scale(1);
+  -ms-transform: translate(14px, 9px) scale(1);
+  transform: translate(14px, 9px) scale(1);
+  -webkit-transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    -webkit-transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  z-index: 1;
+  pointer-events: s;
+}
