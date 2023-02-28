@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Grid, Tabs, Tab, useTheme, useMediaQuery } from "@mui/material";
-import DrawerComp from "./DrawerComp";
+import React from "react";
+import { Grid, useTheme, useMediaQuery } from "@mui/material";
 
-export default function Header({ links }) {
+export default function LoginHeader() {
   const theme = useTheme();
-  const [value, setValue] = useState();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <div style={{ boxShadow: "1px 2px 10px lightgrey" }}>
       <Grid
@@ -43,33 +42,6 @@ export default function Header({ links }) {
           </Grid>
         )}
         <Grid item xs={1} />
-        {isMatch ? (
-          <Grid item xs={5} sx={{ display: "flex", justifyContent: "right" }}>
-            <DrawerComp links={links} />
-          </Grid>
-        ) : (
-          <Grid item xs={4}>
-            <Tabs
-              value={value}
-              indicatorColor="secondary"
-              onChange={(e, val) => setValue(val)}
-            >
-              {links.map((link, index) => (
-                <Tab
-                  label={link}
-                  key={index}
-                  sx={{
-                    textTransform: "none",
-                    fontFamily: "Poppins",
-                    color: "black",
-                    fontSize: 20,
-                    fontWeight: 500,
-                  }}
-                />
-              ))}
-            </Tabs>
-          </Grid>
-        )}
 
         {isMatch ? (
           <Grid

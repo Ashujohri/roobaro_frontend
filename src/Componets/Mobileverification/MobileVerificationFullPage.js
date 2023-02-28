@@ -1,12 +1,9 @@
 import React from "react";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import Header from "../Header & Drawer/Header";
-import { useStyles } from "./AddVisitorFullpageCss";
-import AddVisitorForm from "./AddVisitorForm";
-
-export default function AddVisitorFullpage({ links }) {
-  const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+import MobileVerifyForm from "./MobileVerifyForm";
+import { useStyles } from "./MobileVerificationFullPageCss";
+export default function MobileVerificationFullPage({ links }) {
   var classes = useStyles();
   return (
     <>
@@ -14,8 +11,8 @@ export default function AddVisitorFullpage({ links }) {
         <Grid item xs={12}>
           <Header links={links} />
         </Grid>
-        <Grid item xs={10} sm={10}>
-          <AddVisitorForm />
+        <Grid item xs={10} sm={4}>
+          <MobileVerifyForm />
         </Grid>
       </Grid>
     </>
