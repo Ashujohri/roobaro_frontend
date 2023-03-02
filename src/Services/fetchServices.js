@@ -1,18 +1,19 @@
 import axios from "axios";
-import swal from "sweetalert";
-const ServerURL = "http://localhost:8888";
+var ServerURL = "http://localhost:8888";
 
 const getDataAxios = async (url, body) => {
-  var Token = JSON.parse(localStorage.getItem("Token"));
+  var Token = JSON.parse(localStorage.getItem("token"));
   try {
     const result = await axios.get(`${ServerURL}/${url}`, {
       method: "GET",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: `Bearer ${Token.token}`,
+        Authorization: `Bearer ${Token}`,
       },
     });
-    if (result === "Session has Expired Please Login Again") {
+    console.log("result in get dataaaa", result);
+    if (result === "Invalid Token") {
       alert("Session has Expired Please Login Again");
       return [];
     } else {
@@ -20,20 +21,20 @@ const getDataAxios = async (url, body) => {
     }
   } catch (e) {
     console.log("Error in Get Data Service ====59", e);
-    return null;
+    return e;
   }
 };
 
 // To Send Data In Node
 const postDataAxios = async (url, body) => {
-  var Token = JSON.parse(localStorage.getItem("Token"));
+  var Token = JSON.parse(localStorage.getItem("token"));
   try {
     const result = await axios.post(`${ServerURL}/${url}`, body, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: `Bearer ${Token.token}`,
+        Authorization: `Bearer ${Token}`,
       },
       body: JSON.stringify(body),
     });
@@ -50,14 +51,14 @@ const postDataAxios = async (url, body) => {
 };
 
 const putDataAxios = async (url, body) => {
-  var Token = JSON.parse(localStorage.getItem("Token"));
+  var Token = JSON.parse(localStorage.getItem("token"));
   try {
     const result = await axios.put(`${ServerURL}/${url}`, body, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: `Bearer ${Token.token}`,
+        Authorization: `Bearer ${Token}`,
       },
     });
     if (result === "Session has Expired Please Login Again") {
@@ -73,13 +74,13 @@ const putDataAxios = async (url, body) => {
 };
 
 const postDataAndImageAxios = async (Url, body) => {
-  var Token = JSON.parse(localStorage.getItem("Token"));
+  var Token = JSON.parse(localStorage.getItem("token"));
   try {
     var url = `${ServerURL}/${Url}`;
     const config = {
       headers: {
         "Content-type": "multipart/form-data",
-        Authorization: `Bearer ${Token.token}`,
+        Authorization: `Bearer ${Token}`,
       },
     };
 
@@ -89,12 +90,35 @@ const postDataAndImageAxios = async (Url, body) => {
   } catch (error) {
     if (error.response.status == 401) {
       // alert("Session Expired");
-      swal("session Expired!", "Please Login again", "error", {
-        buttons: false,
-      });
+      alert("Session has Expired Please Login Again");
       localStorage.clear();
+      setTimeout(() => window.location.replace("/"), 2000);
+    } else {
+      console.log(error);
+    }
+  }
+};
 
-      setTimeout(() => window.location.replace("/AdminLogin"), 2000);
+const putDataAndImageAxios = async (Url, body) => {
+  var Token = JSON.parse(localStorage.getItem("token"));
+  try {
+    var url = `${ServerURL}/${Url}`;
+    const config = {
+      headers: {
+        "Content-type": "multipart/form-data",
+        Authorization: `Bearer ${Token}`,
+      },
+    };
+
+    var response = await axios.put(url, body, config);
+    var result = response.data;
+    return result;
+  } catch (error) {
+    if (error.response.status == 401) {
+      // alert("Session Expired");
+      alert("Session has Expired Please Login Again");
+      localStorage.clear();
+      setTimeout(() => window.location.replace("/"), 2000);
     } else {
       console.log(error);
     }
@@ -114,10 +138,12 @@ const postDataAxiosWithoutToken = async (url, body) => {
       alert("Session has Expired Please Login Again");
       return [];
     } else {
+      // console.log("result", result.data);
       return result.data;
     }
   } catch (e) {
-    return null;
+    // console.log("eeeee", e);
+    return e;
   }
 };
 
@@ -127,5 +153,6 @@ export {
   postDataAxios,
   postDataAndImageAxios,
   putDataAxios,
+  putDataAndImageAxios,
   postDataAxiosWithoutToken,
 };

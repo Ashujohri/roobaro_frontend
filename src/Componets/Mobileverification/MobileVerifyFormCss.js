@@ -1,52 +1,25 @@
 import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
 
-    maincontainer: {
+    mainContainer: {
         backgroundColor: "white",
         padding: 35,
         borderRadius: 20,
-        alignItems: "center",
         boxShadow: "1px 1px 20px #ccc",
-        background: 'red'
     },
 
     headingText: {
         display: "flex",
         letterSpacing: 0.05,
-        fontSize: 16,
-        color: "#434242",
-        letterSpacing: 1,
-        variant: "h6",
-        fontFamily: "Poppins",
-        fontWeight: "bold",
-    },
-
-    label: {
-        letterSpacing: 0.05,
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: "bold",
         variant: "h6",
         textAlign: "start",
         fontFamily: "Poppins",
         color: "#000000",
-
     },
-    typebutton: {
-        width: '100%',
-        color: 'white',
-        height: 38,
-        borderRadius: 10,
-        fontFamily: "Poppins",
-        backgroundColor: '#347DFC',
-        border: 'none',
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-    }
-    ,
+    btn: {
 
-
-    submitbtn: {
         height: 38,
         width: '100%',
         fontSize: 16,
@@ -59,22 +32,42 @@ export const useStyles = makeStyles({
         textTransform: "none",
         fontWeight: 600
     },
-    physicallybutton: {
-        display: 'flex',
-        justifyContent: 'space-between',
+    changeNumber: {
+        display: "flex",
         letterSpacing: 0.05,
-        fontSize: 14,
+        fontSize: 13,
+        variant: "h6",
+        fontFamily: "Poppins",
+        justifyContent: "end",
+        color: "#347DFC",
+    },
+    verify: {
+        display: "flex",
+        letterSpacing: 0.05,
+        fontSize: 18,
         fontWeight: "bold",
         variant: "h6",
-        textAlign: "start",
+        textAlign: "left",
         fontFamily: "Poppins",
         color: "#000000",
-
-
+        marginTop: 10
+    },
+    
+    enterOtpVisitor: {
+        display: "flex",
+        letterSpacing: 0.05,
+        fontSize: 14,
+        variant: "h6",
+        padding: 10,
+        fontFamily: "Poppins",
+        color: "#",
+    },
+    otpBox: {
+        width: 100,
+        marginTop: 5,
+        gap: 20,
+        justifyContent: 'center'
     }
-
-
-
 
 
 })
