@@ -26,7 +26,10 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import ToggleButton from "@mui/material/ToggleButton";
 import { useStyles } from "./AddvisitorCssForm";
 import Swal from "sweetalert2";
-import { getDataAxios } from "../../Services/fetchServices";
+import {
+  getDataAxios,
+  putDataAndImageAxios,
+} from "../../Services/fetchServices";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Camera } from "react-camera-pro";
 import moment from "moment/moment";
@@ -92,13 +95,11 @@ export default function AddVisitorForm(props) {
   };
 
   const handleSubmit = async () => {
-    console.log("picture", Image);
-    console.log("group names", names);
     try {
       var formData = new FormData();
       formData.append("visitor_name", PrimaryName);
       formData.append("visitor_type", VisitorType);
-      formData.append("visitor_mobile");
+      formData.append("visitor_mobile", 9898976543);
       formData.append("department_id", Department);
       formData.append("location_id", location);
       formData.append("physically_disabled", PhysicallyDisabled);
@@ -106,12 +107,16 @@ export default function AddVisitorForm(props) {
       formData.append("refrence", Reference);
       formData.append("picture", Image);
       formData.append("group_member_name", names.toString());
-      formData.append("visitor_dateofbirth", DOB);
-      formData.append("created_by");
+      formData.append("visitor_dateofbirth", moment(DOB).format("YYYY-MM-DD"));
+      formData.append("created_by", 1);
       formData.append(
         "created_date_time",
         moment().format("YYYY-MM-DD HH:mm:ss")
       );
+      console.log("formData", JSON.stringify(formData));
+      const config = { headers: { "content-type": "multipart/form-data" } };
+      let response = await putDataAndImageAxios(`visitor/member/add`, formData, config);
+      console.log("response", response);
     } catch (error) {}
   };
 
@@ -330,7 +335,6 @@ export default function AddVisitorForm(props) {
                 disableFuture
                 label={<span>Date of birth</span>}
                 openTo="date"
-                views={["year", "month", "day"]}
                 value={DOB}
                 onChange={(newValue) => {
                   setDOB(newValue);
