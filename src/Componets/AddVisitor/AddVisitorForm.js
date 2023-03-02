@@ -1,10 +1,9 @@
-import { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Grid,
   TextField,
   Button,
   Select,
-  FormLabel,
   OutlinedInput,
   MenuItem,
   FormControl,
@@ -24,37 +23,120 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-
+import ToggleButton from "@mui/material/ToggleButton";
 import { useStyles } from "./AddvisitorCssForm";
-export default function AddVisitorForm() {
+import Swal from "sweetalert2";
+import { getDataAxios } from "../../Services/fetchServices";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { Camera } from "react-camera-pro";
+import moment from "moment/moment";
+
+export default function AddVisitorForm(props) {
   var classes = useStyles();
-  const [value, setValue] = useState(dayjs("2022-02-23"));
-  const [personName, setPersonName] = useState([]);
-
+  const camera = useRef(null);
+  const [DOB, setDOB] = useState(dayjs("2022-02-23"));
   const [location, setLocation] = useState("");
-
-  const handleLocation = async (event) => {
-    setLocation(event.target.value);
-  };
-
   const [userdefault, setUserDefault] = useState("");
   const [names, setNames] = useState([userdefault]);
+  const [Department, setDepartment] = useState("");
+  const [PhysicallyDisabled, setPhysicallyDisabled] = useState("");
+  const [Purpose, setPurpose] = useState("");
+  const [Reference, setReference] = useState("");
+  const [PrimaryName, setPrimaryName] = useState("");
+  const [VisitorType, setVisitorType] = useState("single");
+  const [Image, setImage] = useState(null);
+  const [DepartmentData, setDepartmentData] = useState([]);
+  const [LocationData, setLocationData] = useState([]);
+
+  useEffect(() => {
+    fetchDepartment();
+    fetchLocation();
+  }, []);
+
+  const fetchDepartment = async () => {
+    try {
+      let result = await getDataAxios(`department/departmentDisplay`);
+      if (result.length != 0) {
+        setDepartmentData(result.result);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: result.message,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong",
+      });
+    }
+  };
+
+  const fetchLocation = async () => {
+    try {
+      let result = await getDataAxios(`location/locationListView`);
+      if (result.length != 0) {
+        setLocationData(result.result);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: result.message,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong",
+      });
+    }
+  };
+
+  const handleSubmit = async () => {
+    console.log("picture", Image);
+    console.log("group names", names);
+    try {
+      var formData = new FormData();
+      formData.append("visitor_name", PrimaryName);
+      formData.append("visitor_type", VisitorType);
+      formData.append("visitor_mobile");
+      formData.append("department_id", Department);
+      formData.append("location_id", location);
+      formData.append("physically_disabled", PhysicallyDisabled);
+      formData.append("purpose", Purpose);
+      formData.append("refrence", Reference);
+      formData.append("picture", Image);
+      formData.append("group_member_name", names.toString());
+      formData.append("visitor_dateofbirth", DOB);
+      formData.append("created_by");
+      formData.append(
+        "created_date_time",
+        moment().format("YYYY-MM-DD HH:mm:ss")
+      );
+    } catch (error) {}
+  };
 
   const handleAdd = () => {
     const data = [...names, []];
     setNames(data);
   };
+
   const handleChange = (onchangevalue, i) => {
     const inputdata = [...names];
     inputdata[i] = onchangevalue.target.value;
     setNames(inputdata);
   };
+
   const handleDelete = (i) => {
     const deletename = [...names];
     deletename.splice(i, 1);
     setNames(deletename);
   };
-  console.log(names, "data-");
+
+  const handleVisitor = (e) => {
+    setVisitorType(e.target.value);
+    setNames([userdefault]);
+    setPrimaryName("");
+  };
 
   return (
     <>
@@ -75,88 +157,161 @@ export default function AddVisitorForm() {
           <div className={classes.label}>Visitor type:</div>
         </Grid>
 
-        <Grid item xs={5} sm={1}>
-          <Button variant="contained" class={classes.typebutton}>
-            <PersonIcon /> Single
-          </Button>
+        <Grid item xs={5} sm={2.5}>
+          <ToggleButtonGroup
+            color="primary"
+            value={VisitorType}
+            exclusive
+            onChange={(e) => handleVisitor(e)}
+            aria-label="Platform"
+          >
+            <ToggleButton
+              style={{
+                borderRadius: 10,
+                width: "100%",
+                height: 38,
+                fontFamily: "Poppins",
+                color: "black",
+              }}
+              color="primary"
+              value="single"
+            >
+              <PersonIcon /> Single
+            </ToggleButton>
+            <ToggleButton
+              style={{
+                borderRadius: 10,
+                width: "100%",
+                height: 38,
+                fontFamily: "Poppins",
+                color: "black",
+              }}
+              color="primary"
+              value="group"
+            >
+              <GroupIcon /> Group
+            </ToggleButton>
+          </ToggleButtonGroup>
         </Grid>
-
-        <Grid item xs={5} sm={1}>
-          <Button variant="contained" class={classes.typebutton}>
-            <GroupIcon /> Group
-          </Button>
-        </Grid>
-        <Grid item xs={12} sm={8.5} />
-        {names.map((item, index) => {
-          return (
-            <>
-              <Grid item xs={12} sm={1.5}>
-                <div className={classes.label}>
-                  {index == 0 ? (
-                    <> Name (Primary)</>
-                  ) : (
-                    <>{index + 1}nd Person Name </>
-                  )}
-                </div>
-              </Grid>
-              <Grid item xs={10} sm={10}>
-                <TextField
-                  onChange={(e) => handleChange(e, index)}
-                  value={item}
-                  InputProps={{
-                    name: "InputProps",
-                    type: "text",
-                    placeholder: "Name",
-                    style: { borderRadius: 13, fontFamily: "Poppins" },
-                  }}
-                  label="Name"
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  placeholder="email"
-                  type="text"
-                />
-              </Grid>
-              <Grid
-                item
-                xs={2}
-                sm={0.5}
-                sx={{ display: "flex", justifyContent: "right" }}
-              >
-                {index == 0 ? (
-                  <>
-                    {names.length == 10 ? (
+        <Grid item xs={12} sm={8} />
+        {VisitorType === "single" ? (
+          <>
+            <Grid item xs={12} sm={1.5}>
+              <div className={classes.label}>Name (Primary)</div>
+            </Grid>
+            <Grid item xs={12} sm={10.5}>
+              <TextField
+                required={true}
+                onChange={(e) => setPrimaryName(e.target.value)}
+                value={PrimaryName}
+                InputProps={{
+                  name: "InputProps",
+                  type: "text",
+                  placeholder: "Name",
+                  style: { borderRadius: 13, fontFamily: "Poppins" },
+                }}
+                label="Name"
+                fullWidth
+                size="small"
+                variant="outlined"
+                type="text"
+              />
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item xs={12} sm={1.5}>
+              <div className={classes.label}>Name (Primary)</div>
+            </Grid>
+            <Grid item xs={12} sm={10.5}>
+              <TextField
+                onChange={(e) => setPrimaryName(e.target.value)}
+                value={PrimaryName}
+                InputProps={{
+                  name: "InputProps",
+                  type: "text",
+                  placeholder: "Name",
+                  style: { borderRadius: 13, fontFamily: "Poppins" },
+                }}
+                label="Name"
+                required={true}
+                fullWidth
+                size="small"
+                variant="outlined"
+                type="text"
+              />
+            </Grid>{" "}
+            {names.map((item, index) => {
+              return (
+                <>
+                  <Grid item xs={12} sm={1.5}>
+                    <div className={classes.label}>
+                      {index == 0 ? (
+                        <> Name (Second Primary)</>
+                      ) : (
+                        <>{index + 1}nd Person Name </>
+                      )}
+                    </div>
+                  </Grid>
+                  <Grid item xs={10} sm={10}>
+                    <TextField
+                      onChange={(e) => handleChange(e, index)}
+                      value={item}
+                      InputProps={{
+                        name: "InputProps",
+                        type: "text",
+                        placeholder: "Name",
+                        style: { borderRadius: 13, fontFamily: "Poppins" },
+                      }}
+                      label="Name"
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      type="text"
+                      required={true}
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={2}
+                    sm={0.5}
+                    sx={{ display: "flex", justifyContent: "right" }}
+                  >
+                    {index == 0 ? (
                       <>
-                        <IconButton
-                          disabled
-                          color="primary"
-                          onClick={() => handleAdd()}
-                        >
-                          <AddCircleIcon />{" "}
-                        </IconButton>
+                        {names.length == 9 ? (
+                          <>
+                            <IconButton disabled color="primary">
+                              <AddCircleIcon />{" "}
+                            </IconButton>
+                          </>
+                        ) : (
+                          <>
+                            <IconButton
+                              color="primary"
+                              onClick={() => handleAdd()}
+                            >
+                              <AddCircleIcon />{" "}
+                            </IconButton>
+                          </>
+                        )}
                       </>
                     ) : (
                       <>
-                        <IconButton color="primary" onClick={() => handleAdd()}>
-                          <AddCircleIcon />{" "}
+                        <IconButton
+                          color="error"
+                          onClick={(e) => handleDelete(index)}
+                        >
+                          <RemoveCircleOutlineIcon />{" "}
                         </IconButton>
                       </>
                     )}
-                  </>
-                ) : (
-                  <>
-                    <IconButton
-                      color="error"
-                      onClick={(e) => handleDelete(index)}
-                    >
-                      <RemoveCircleOutlineIcon />{" "}
-                    </IconButton>
-                  </>
-                )}
-              </Grid>
-            </>
-          );
-        })}
+                  </Grid>
+                </>
+              );
+            })}
+          </>
+        )}
 
         <Grid item xs={12} sm={1.5}>
           <div className={classes.label}>Date Of Birth:</div>
@@ -169,18 +324,20 @@ export default function AddVisitorForm() {
                 InputProps={{
                   name: "InputProps",
                   type: "text",
-                  placeholder: "Name",
+                  placeholder: "DOB",
                   style: { borderRadius: 18, fontFamily: "Poppins" },
                 }}
                 disableFuture
                 label={<span>Date of birth</span>}
                 openTo="date"
                 views={["year", "month", "day"]}
-                value={value}
+                value={DOB}
                 onChange={(newValue) => {
-                  setValue(newValue);
+                  setDOB(newValue);
                 }}
-                renderInput={(params) => <TextField {...params} />}
+                renderInput={(params) => (
+                  <TextField {...params} required={true} />
+                )}
               />
             </Stack>
           </LocalizationProvider>
@@ -194,14 +351,16 @@ export default function AddVisitorForm() {
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
+              value={PhysicallyDisabled}
+              onChange={(event) => setPhysicallyDisabled(event.target.value)}
             >
               <FormControlLabel
                 sx={{ marginRight: 5 }}
-                value="female"
+                value="Yes"
                 control={<Radio />}
                 label="Yes"
               />
-              <FormControlLabel value="male" control={<Radio />} label="No" />
+              <FormControlLabel value="No" control={<Radio />} label="No" />
             </RadioGroup>
           </FormControl>
         </Grid>
@@ -220,18 +379,24 @@ export default function AddVisitorForm() {
             }}
             size="small"
           >
-            <InputLabel id="demo-multiple-name-label">Select </InputLabel>
+            <InputLabel id="demo-multiple-name-label">
+              Select Department
+            </InputLabel>
             <Select
-              labelId="demo-multiple-name-label"
-              id="demo-multiple-name"
-              value={location}
               sx={{ borderRadius: 3, height: 40 }}
-              onChange={handleLocation}
+              labelId="demo-multiple-name-label"
+              required={true}
+              id="demo-multiple-name"
+              value={Department}
               input={<OutlinedInput label="Name" />}
-              label="Select Location"
+              label="Select Department"
+              onChange={(event) => setDepartment(event.target.value)}
             >
-              <MenuItem value={"Electricity"}>Electricity</MenuItem>
-              <MenuItem value={"Water"}>Water</MenuItem>
+              {DepartmentData.map((item, label) => (
+                <MenuItem key={item.department_id} value={item.department_id}>
+                  {item.department_name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
@@ -250,18 +415,24 @@ export default function AddVisitorForm() {
             }}
             size="small"
           >
-            <InputLabel id="demo-multiple-name-label">Select</InputLabel>
+            <InputLabel id="demo-multiple-name-label">
+              Select Location
+            </InputLabel>
             <Select
+              sx={{ borderRadius: 3, height: 40 }}
               labelId="demo-multiple-name-label"
               id="demo-multiple-name"
+              required={true}
               value={location}
-              sx={{ borderRadius: 3, height: 40 }}
-              onChange={handleLocation}
+              onChange={(event) => setLocation(event.target.value)}
               input={<OutlinedInput label="Name" />}
-              label="Select Vidhansabha"
+              label="Select location"
             >
-              <MenuItem value={"Electricity"}>Vidhansabha 1</MenuItem>
-              <MenuItem value={"Water"}>Vidhansabha 2</MenuItem>
+              {LocationData.map((item, label) => (
+                <MenuItem key={item.location_id} value={item.location_id}>
+                  {item.location_name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
@@ -283,8 +454,10 @@ export default function AddVisitorForm() {
             multiline
             rows={3}
             variant="outlined"
-            placeholder="email"
+            required={true}
             type="text"
+            value={Purpose}
+            onChange={(event) => setPurpose(event.target.value)}
           />
         </Grid>
 
@@ -297,15 +470,17 @@ export default function AddVisitorForm() {
             InputProps={{
               name: "InputProps",
               type: "text",
-              placeholder: " Reference:",
+              placeholder: "Reference",
               style: { borderRadius: 13, fontFamily: "Poppins" },
             }}
-            label=" Reference:"
+            label="Reference"
             fullWidth
+            required={true}
             size="small"
             variant="outlined"
-            placeholder="email"
             type="text"
+            value={Reference}
+            onChange={(event) => setReference(event.target.value)}
           />
         </Grid>
 
@@ -313,36 +488,26 @@ export default function AddVisitorForm() {
           <div className={classes.label}>Picture:</div>
         </Grid>
 
-        <Grid item xs={5} sm={1}>
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="label"
+        <Grid item xs={12} sm={4.5}>
+          <Camera ref={camera} aspectRatio={16 / 9} facingMode="user" />
+          <Button
+            style={{ marginTop: "5px" }}
+            variant="contained"
+            fullWidth
+            onClick={() => setImage(camera.current.takePhoto())}
           >
-            <input size="large" hidden accept="image/*" type="file" />
-            <PhotoCamera sx={{ fontSize: 50, padding: 3 }} />
-          </IconButton>
+            Take photo
+          </Button>
         </Grid>
 
-        <Grid item xs={7} sm={9.5}>
-          <Button
-            variant="contained"
-            component="label"
-            style={{
-              borderRadius: 10,
-              fontFamily: "Poppins",
-              textTransform: "none",
-            }}
-          >
-            Open Camera
-            <input hidden accept="image/*" multiple type="file" />
-          </Button>
+        <Grid item xs={12} sm={6}>
+          <img src={Image} alt="Taken photo" width="80%" height="80%" />
         </Grid>
 
         <Grid xs={12} sm={1.5} />
 
         <Grid item xs={12} sm={10.5}>
-          <Button variant="contained" fullWidth class={classes.submitbtn}>
+          <Button variant="contained" fullWidth onClick={() => handleSubmit()}>
             Login
           </Button>
         </Grid>
