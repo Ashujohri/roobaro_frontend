@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Grid, Tabs, Tab, useTheme, useMediaQuery } from "@mui/material";
 import DrawerComp from "./DrawerComp";
+import ListItems from "../Menus/ListItems";
 
 export default function Header({ links }) {
   const theme = useTheme();
-  const [value, setValue] = useState();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <div style={{ boxShadow: "1px 2px 10px lightgrey" }}>
       <Grid
@@ -49,25 +50,7 @@ export default function Header({ links }) {
           </Grid>
         ) : (
           <Grid item xs={4}>
-            <Tabs
-              value={value}
-              indicatorColor="secondary"
-              onChange={(e, val) => setValue(val)}
-            >
-              {links.map((link, index) => (
-                <Tab
-                  label={link}
-                  key={index}
-                  sx={{
-                    textTransform: "none",
-                    fontFamily: "Poppins",
-                    color: "black",
-                    fontSize: 20,
-                    fontWeight: 500,
-                  }}
-                />
-              ))}
-            </Tabs>
+            <ListItems />
           </Grid>
         )}
 

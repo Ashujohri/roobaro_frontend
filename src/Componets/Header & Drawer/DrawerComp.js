@@ -8,9 +8,17 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { adminRoutes } from "../config/MenuItems";
+import { useNavigate } from "react-router-dom";
 
-export default function DrawerComp({ links }) {
+export default function DrawerComp(props) {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+
+  const handleGo = (data) => {
+    navigate(`/${data.pathName}`);
+  };
+
   return (
     <>
       <Drawer
@@ -33,7 +41,7 @@ export default function DrawerComp({ links }) {
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
-          {links.map((link, index) => (
+          {adminRoutes.map((item, index) => (
             <ListItemButton key={index} divider onClick={() => setOpen(false)}>
               <ListItemIcon>
                 <ListItemText
@@ -43,9 +51,11 @@ export default function DrawerComp({ links }) {
                     color: "black",
                     fontSize: 20,
                     fontWeight: 500,
+                    cursor: "pointer",
                   }}
+                  onClick={() => handleGo(item)}
                 >
-                  {link}
+                  {item.name}
                 </ListItemText>
               </ListItemIcon>
             </ListItemButton>

@@ -3,7 +3,7 @@ import { createStyles, makeStyles } from '@mui/styles';
 export const useStyles = makeStyles(() =>
   createStyles({
     background: {
-      height: '120vh',
+      height: '100vh',
       backgroundImage: 'url(./images/Background.jpg)',
       backgroundSize: 'cover',
       display: 'flex',
