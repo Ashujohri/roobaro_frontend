@@ -1,13 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "../App.css";
-import AddVisitorFullpage from "./AddVisitor/AddVisitorFullpage";
 import NewLogin from "./UserLogin/Login";
-import RecoverPassword from "./ForgotPass/RecoverPassword";
-import CreatePassword from "./ForgotPass/CreatePassword";
-import EntryMode from "./Dashboard/EntryMode";
-import MobileNumber from "./Mobileverification/MobileNumber";
-import OTP from "./Mobileverification/Otp";
-import FieldVisitor from "./FieldVisitor/InterVisitorDetail";
+import Dashboard from "./Dashboard/Dashboard";
+import NewVisitorOffice from "./Mobileverification/NewVisitorOffice";
+import AddVisitorForm from "./AddVisitor/AddVisitorForm";
+import ShowVisitors from "./ShowVisitors/ShowVisitors";
 
 export default function AdminRouter(props) {
   return (
@@ -15,13 +12,10 @@ export default function AdminRouter(props) {
       <Routes>
         <Route element={<NewLogin />} path="/Login" />
         <Route element={<NewLogin />} path="/" />
-        <Route element={<RecoverPassword />} path="/recoverpassword" />
-        <Route element={<CreatePassword />} path="/cretepasword" />
-        <Route element={<AddVisitorFullpage />} path="/Addvisitor" />
-        <Route element={<EntryMode />} path="/Dashboard" />
-        <Route element={<MobileNumber />} path="/MobileNumber" />
-        <Route element={<OTP />} path="/OTP" />
-        <Route element={<FieldVisitor />} path="/FieldVisit" />
+        <Route element={<Dashboard />} path="/Dashboard" />
+        <Route element={<NewVisitorOffice />} path="/NewVisitorOffice" />
+        <Route element={<AddVisitorForm />} path="/AddVisitorForm" />
+        <Route element={<ShowVisitors />} path="/ShowVisitors" />
       </Routes>
     </Router>
   );
