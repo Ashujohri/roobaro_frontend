@@ -1,98 +1,119 @@
-import { useState } from "react";
-import { Grid, TextField, Button } from "@mui/material";
-import "../Roobaroo.css";
-import { useNavigate } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import React, { useState } from 'react';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import { Grid, Link } from '@mui/material';
+import { purple } from '@mui/material/colors';
+import Header from '../Header & Drawer/Header';
+import '../style.css'
+
+
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://the7shades.in/">
+        the7shades
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+const theme = createTheme();
 
 export default function Login(props) {
-  const [personName, setPersonName] = useState([]);
-  const Navigate = useNavigate();
 
-  const handleShowmobile = () => {
-    Navigate("/Dashboard");
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#347DFC',
+      },
+    },
+  });
+
+  var navigate = useNavigate()
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
-
-  const handleShowRecoverPage = () => {
-    Navigate("/recoverpassword");
+  const [emailAddress, setEmailAddress] = useState('')
+  const [password, setPassword] = useState('')
+  const handleClick = async () => {
+    navigate('/Dashboard')
   };
 
   return (
     <>
-      <Grid
-        container
-        className="headerTop"
-        spacing={2}
-        style={{ display: "flex", justifyContent: "center", height: "100vh" }}
-      >
-        <Grid item xs={12}>
-          <div style={{ boxShadow: "1px 2px 10px lightgrey" }}>
-            <AppBar position="static" className="appbar">
-              <Toolbar></Toolbar>
-            </AppBar>
-          </div>
-        </Grid>
-
+      <ThemeProvider theme={theme}>
         <div className="container">
-          <Grid item xs={12}>
-            <div className="containerheadingText">Login</div>
-          </Grid>
-
-          <Grid xs={12}>
-            <TextField
-              InputProps={{
-                name: "InputProps",
-                type: "text",
-                placeholder: "Email/ Mobile",
-                style: { borderRadius: 13, fontFamily: "Poppins" },
-              }}
-              label="Email/Mobile"
-              fullWidth
-              size="small"
-              margin="normal"
-              variant="outlined"
-              placeholder="email"
-              type="text"
-            />
-          </Grid>
-
-          <Grid xs={12}>
-            <TextField
-              InputProps={{
-                name: "InputProps",
-                type: "password",
-                placeholder: "Password",
-                style: { borderRadius: 13, fontFamily: "Poppins" },
-              }}
-              label="Password"
-              fullWidth
-              size="small"
-              margin="normal"
-              variant="outlined"
-              placeholder="email"
-              type="text"
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Button onClick={handleShowmobile} variant="contained" fullWidth>
-              Login
-            </Button>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            className="reset"
-            onClick={handleShowRecoverPage}
-          >
-            <p>
-              {" "}
-              forgot password ? <a style={{ color: "#347DFC" }}>Reset</a>
-            </p>
-          </Grid>
+          <Header />
+          <div className="box">
+            <div className="subbox">
+              <Grid container spacing={3}>
+                <Grid item xs={12} sm={12}>
+                  <div className="heading">Login to the Roobaroo</div>
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <FormControl fullWidth size="small" variant="outlined">
+                    <OutlinedInput
+                      style={{ borderRadius: 15 }}
+                      id="outlined-adornment-weight"
+                      // endAdornment={<InputAdornment position="end">kg</InputAdornment>}
+                      aria-describedby="outlined-weight-helper-text"
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                
+                  <FormControl fullWidth size="small" variant="outlined">
+                    {/* <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel> */}
+                    <OutlinedInput
+                      id="outlined-adornment-password"
+                      style={{ borderRadius: 15 }}
+                      type={showPassword ? 'text' : 'password'}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      // label="Password"
+                    />
+                  </FormControl>
+                  
+                </Grid>
+                <Grid item xs={6} sm={12}>
+                  <Button variant="contained" onClick={handleClick} fullWidth style={{ borderRadius: 15 }}>Login</Button>
+                </Grid>
+                <Grid item xs={6} sm={12}>
+                  <div className="center">
+                    <div className='forgotcolor'>Forget Password?<span className="primarycolor ">Reset</span></div>
+                  </div>
+                </Grid>
+              </Grid>
+            </div>
+          </div>
         </div>
-      </Grid>
+      </ThemeProvider>
     </>
   );
 }
