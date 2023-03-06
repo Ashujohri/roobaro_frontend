@@ -7,19 +7,33 @@ import {
   postDataAxios,
   postDataAxiosWithoutToken,
 } from "../../Services/fetchServices";
+import e from "cors";
 export default function MobileVerifyForm(props) {
   var classes = useStyles(); 
   // var Navigate = useNavigate();
   const initialvalues = { mobileNumber: "" };
   const [formValues, setFormValue] = useState(initialvalues);
   const [mobile, setMobile] = useState("");
-  const [formError, setFormError] = useState({});
-  const [isSumbit, setIsSubmit] = useState(false);
-  var [inputOtp, setInputOtp] = useState("");
-
+ 
+ const[error,setError]=useState(false)
   const [generatedOtp, setGeneratedOtp] = useState("");
   const [btnStatus, setBtnStatus] = useState(false);
   const [btnMsg, setBtnMsg] = useState("Continue");
+
+
+
+
+  
+   const handleSubmit=(event)=>{
+    event.preventDefault()
+    alert(mobile)
+    if(mobile.length==0)
+    {
+      setError(true)
+    }
+
+      }
+  
 
   const GenerateOtp = async () => {
     var otp = parseInt(Math.random() * 8999) + 1000;
@@ -43,8 +57,13 @@ export default function MobileVerifyForm(props) {
     }
   };
 
+
+
+
+
   return (
     <>
+
       <Grid container spacing={1} className={classes.mainContainer}>
         <Grid item xs={12} sm={12}>
           <div className={classes.headingText}>Enter visiter Mobile number</div>
@@ -70,18 +89,24 @@ export default function MobileVerifyForm(props) {
             name="mobileNumber"
             value={mobile}
             onChange={(event) => setMobile(event.target.value)}
-            //onFocus={()=>handleError(null,'mobileEmail')}
-            //  onChange={handleChange}
+         
           />
         </Grid>
-
-        <p>{formError.mobileNumber}</p>
+    {error &&mobile.length<=0?
+      <div style={{textAlign:"center",color:'red'}}> This Field Can't Be Empty</div>:<></>}
         <Grid item xs={12} sm={12}>
           <Button
             variant="contained"
             fullWidth
             class={classes.btn}
-            onClick={GenerateOtp}
+            // onClick={GenerateOtp}
+             onClick={handleSubmit}
+            // onClick={()=>{
+            //   handleSubmit()
+            //   GenerateOtp()
+
+            // }}
+            
           >
             Continue
           </Button>
@@ -107,6 +132,7 @@ export default function MobileVerifyForm(props) {
           <></>
         )}
       </Grid>
+  
     </>
   );
 }
