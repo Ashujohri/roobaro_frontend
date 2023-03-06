@@ -12,7 +12,6 @@ const getDataAxios = async (url, body) => {
         Authorization: `Bearer ${Token}`,
       },
     });
-    console.log("result in get dataaaa", result);
     if (result === "Invalid Token") {
       alert("Session has Expired Please Login Again");
       return [];
@@ -20,7 +19,6 @@ const getDataAxios = async (url, body) => {
       return result.data;
     }
   } catch (e) {
-    console.log("Error in Get Data Service ====59", e);
     return e;
   }
 };
@@ -45,7 +43,6 @@ const postDataAxios = async (url, body) => {
       return result.data;
     }
   } catch (e) {
-    console.log("Error in Get Data Service ====59", e);
     return e;
   }
 };
@@ -68,8 +65,7 @@ const putDataAxios = async (url, body) => {
       return result.data;
     }
   } catch (e) {
-    console.log("Error in Get Data Service ====59", e);
-    return null;
+    return e;
   }
 };
 
