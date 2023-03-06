@@ -1,0 +1,931 @@
+.Stylesheet_scrollitem {
+  height: 500px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+.Stylesheet_scrollitem::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 2000px) {
+  body {
+    background-image: url("/public/images/Background.jpg");
+    background-size: 100% 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* background-color: red; */
+    display: block;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+    
+  }
+}
+
+/* login page css start   */
+
+.appbar {
+  background-image: url("/public/images/roobaroo.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: "1px 1px 20px #ccc";
+}
+
+.container {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: "1px 1px 20px #ccc";
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  flex-direction: column;
+}
+
+.containerheadingText {
+  letter-spacing: 0.4px;
+  font-size: 22;
+  font-weight: bold;
+  text-align: start;
+  color: "#000000";
+  font-family: "Poppins";
+}
+
+.reset{
+  display:flex;
+  justify-content: center;
+}
+@media screen and(min-width: 240px) and (max-width: 480px) {
+  .container {
+    width: 90%;
+    background: #fff;
+    box-shadow: 5px 5px 25px #0000001a;
+    padding: 20px;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 2000px) {
+  .container {
+    width: 25% !important;
+    background: #fff;
+    padding: 20;
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+}
+
+/* login page  css end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* mobile number css */
+
+.headerleftimg {
+  width: 46%;
+  background: yellow;
+  display: flex;
+  overflow: hidden;
+}
+.roobaroo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appbar {
+  background-image: url("/public/images/roobaroo.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /* box-shadow: "1px 1px 20px #ccc"; */
+}
+
+.headertwo {
+  background: #fff;
+  padding: 10px;
+}
+
+.headertwotext {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-left: 1%;
+  letter-spacing: 0.4px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: start;
+  color: "#000000";
+  font-family: "Poppins";
+}
+
+@media screen and (min-width: 240px) and (max-width: 480px) {
+  .appbar {
+    /* background-image: url("/public/images/roobaroomobile.png"); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  .mainheader {
+    background-color: white;
+    display: flex;
+  }
+  .headertext {
+    justify-content: space-around;
+   
+    display: none;
+  }
+
+  .menuicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .headerleftimg {
+    width: 65%;
+  }
+  .roobaroo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .roobarooimgright {
+    width: 100%;
+    float: right;
+  }
+  .roobarooimg {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 900px) {
+  .appbar {
+    /* background-image: url("/public/images/roobarootab.png"); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  .mainheader {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+  }
+  .headertext {
+    justify-content: space-around;
+    background: pink;
+    display: none;
+  }
+  .headertextcolor {
+    background-color: #fff;
+    border: 0px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: start;
+    color: "#000000";
+    font-family: "Poppins";
+  }
+  .menuicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .headerleftimg {
+    width: 100%;
+  }
+  .roobaroo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .roobarooimgright {
+    width: 60%;
+    float: right;
+  }
+  .roobarooimg {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 901px) and (max-width: 1600px) {
+  .mainheader {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+  }
+  .headertextcolor {
+    background-color: #fff;
+    border: 0px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: start;
+    color: "#000000";
+    font-family: "Poppins";
+  }
+  .headerleftimg {
+    width: 30%;
+  }
+  .roobaroo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .roobarooimgright {
+    width: 20%;
+    float: right;
+  }
+  .roobarooimg {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 2000px) {
+  .mainheader {
+    background-color: white;
+  }
+
+  .mainheadertext {
+    justify-content: space-around;
+    background: pink;
+  }
+
+  .headertextcolor {
+    background-color: #fff;
+    border: 0px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: start;
+    color: "#000000";
+    font-family: "Poppins";
+    padding: 20px;
+  }
+
+  .menuicon {
+    display: none;
+  }
+
+  .roobarooimg {
+    width: 30%;
+  }
+}
+
+.headerdowntext {
+  margin-left: 120px;
+}
+
+.headerdown {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: start;
+  color: "#000000";
+  font-family: "Poppins";
+  background: #fff;
+  padding: 20px;
+}
+
+/* Entry mode  page  css start  */
+
+.maincontainerEntry {
+  /* padding: 11%;selectbtn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+  /* background: blue;   */
+}
+
+.subContainer {
+  background: white;
+  border-radius: 10px;
+  padding: 2%;
+  /* width:80%; */
+  box-shadow: 5px 5px 25px #0000001a;
+}
+.subIVisContainer {
+  background: white;
+  border-radius: 10px;
+  padding: 2%;
+  width: 80%;
+  box-shadow: 5px 5px 25px #0000001a;
+}
+.btn {
+  height: 38px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #347dfc;
+  margin-top: 10;
+  color: #fff;
+  font-family: Poppins;
+  text-transform: none;
+  font-weight: 600;
+}
+.selecttext {
+  justify-content: center;
+
+  display: flex;
+  align-items: center;
+  padding: 3%;
+  font-size: 24px;
+  font-weight: bold;
+  /* background:blue; */
+}
+.selectbtn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10%;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+/* .selectbtn:hover {
+  background-color: dodgerblue;
+} */
+.selectbtnoffice {
+  /* border-radius: 5;
+  font-family: Poppins;
+  text-transform: none;
+  width: 68%;
+  height: 80;
+  padding: 2%; */
+  /* display: flex;
+  flex-direction: column; */
+  border-color: #434343;
+
+  align-items: center;
+  border-radius: 5px;
+}
+
+.selectbtnfield {
+  border-radius: 5;
+  font-family: Poppins;
+  text-transform: none;
+  width: 61%;
+  height: 60;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  border-color: #434343;
+
+  align-items: center;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .maincontainerEntry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+  }
+
+  .subContainer {
+    background: white;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+  .selecttext {
+    padding: 3%;
+    font-size: 24px;
+    font-weight: bold;
+    /* background:blue; */
+  }
+  .selectbtn {
+    padding: 3%;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    /* display: flex; */
+
+    /* flex-direction: column; */
+  }
+  .selectbtnoffice {
+    /* border-radius: 5;
+    font-family: Poppins;
+    text-transform: none;
+    width: 68%;
+    height: 80;
+    padding: 2%; */
+    /* display: flex;
+    flex-direction: column; */
+    border-color: #434343;
+
+    align-items: center;
+    border-radius: 5px;
+  }
+
+  .selectbtnfield {
+    border-radius: 5;
+    font-family: Poppins;
+    text-transform: none;
+    width: 61%;
+    height: 60;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    border-color: #434343;
+
+    align-items: center;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 200px) {
+  .maincontainerEntry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+  }
+
+  .subContainer {
+    background: white;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+  .selecttext {
+    justify-content: center;
+
+    display: flex;
+    align-items: center;
+    padding: 3%;
+    font-size: 24px;
+    font-weight: bold;
+    /* background:blue; */
+  }
+  .selectbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3%;
+    border-radius: 10px;
+    border: 1px solid #eee;
+  }
+  .selectbtnoffice {
+    /* border-radius: 5;
+    font-family: Poppins;
+    text-transform: none;
+    width: 68%;
+    height: 80;
+    padding: 2%; */
+    /* display: flex;
+    flex-direction: column; */
+    border-color: #434343;
+
+    align-items: center;
+    border-radius: 5px;
+  }
+
+  .selectbtnfield {
+    border-radius: 5;
+    font-family: Poppins;
+    text-transform: none;
+    width: 61%;
+    height: 60;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    border-color: #434343;
+
+    align-items: center;
+    border-radius: 5px;
+  }
+}
+
+/* Visitor details  css start */
+
+.maincontainerVisitor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+}
+
+.subContainerVisitor {
+ 
+  border-radius: 10px;
+  width: 80%;
+  /* padding: 5%; */
+  box-shadow: 5px 5px 25px #0000001a;
+}
+.gridContainer {
+  background: white;
+  padding: 3%;
+
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 200px) and (max-width: 600px) {
+  .maincontainerVisitor {
+    height: 85vh;
+   
+  }
+
+  .subContainerVisitor {
+   background: white;
+    border-radius: 10px;
+    width: 90%;
+    padding: 2%;
+
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+  .gridContainer {
+    background: white;
+    padding: 3%;
+  
+    border-radius: 10px;
+  }
+}
+
+
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .maincontainerVisitor {
+    height: 90vh;
+   
+  }
+
+  .subContainerVisitor {
+    background: white;
+    border-radius: 10px;
+    width: 100%;
+    padding: 2%;
+
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+  .gridContainer {
+    background: white;
+    padding: 3%;
+  
+    border-radius: 10px;
+  }
+}
+
+
+
+@media screen and (min-width: 1001px) and (max-width: 2000px) {
+  .maincontainerVisitor {
+    height: 77vh;
+  
+  }
+
+  .subContainerVisitor {
+   background: white;
+    border-radius: 10px;
+    width: 68%;
+    padding: 2%;
+
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+  .gridContainer {
+    background: white;
+    padding: 3%;
+  
+    border-radius: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+/* create password css start */
+.mainContainerCreatePassword{
+ display: flex;
+ justify-content: center;
+ height: 90vh;
+align-content: center;
+/* background-color: red; */
+}
+
+.containerCreatepassword {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: "1px 1px 20px #ccc";
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  flex-direction: column;
+ 
+}
+
+.containerheadingTextCreatepassword {
+  letter-spacing: 0.4px;
+  font-size: 22;
+  font-weight: bold;
+  text-align: start;
+  color: "#000000";
+  font-family: "Poppins";
+ 
+}
+
+.canceltext{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  color: #347DFC;
+  font-weight: bold;
+  font-family: "Poppins";
+}
+
+
+
+
+
+@media screen and(min-width: 240px) and (max-width: 480px) {
+  .containerCreatepassword {
+    width: 25% !important;
+    background: #fff;
+    padding: 20;
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 2000px) {
+  .containerCreatepassword {
+    width: 25% !important;
+    height:auto;
+    background: #fff;
+    padding: 20;
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+  .mainContainerCreatePassword{
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+   align-content: center;
+   /* background-color: red; */
+   }
+}
+
+
+
+
+
+
+
+
+/* otp page css start */
+
+.mainContainerotp{
+  display: flex;
+  justify-content: center;
+  height: 77vh;
+ align-content: center;
+ 
+ 
+ }
+ .containerotp {
+ 
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: "1px 1px 20px #ccc";
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  flex-direction: column;
+ 
+}
+
+.containerheadingtextotp{
+  letter-spacing: 0.4px;
+  font-size: 22;
+  font-weight: bold;
+  text-align: start;
+  color: "#000000";
+  font-family: "Poppins";
+ 
+}
+
+
+.otpbtn{
+  height: 38px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #347dfc;
+ padding: 10;
+  color: #fff;
+  font-family: Poppins;
+  text-transform: none;
+  font-weight: 600;
+}
+.verifybtn{
+  height: 38px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #347dfc;
+
+  color: #fff;
+  font-family: Poppins;
+  text-transform: none;
+  font-weight: 600;
+}
+
+
+.changemobilenumbertext{
+  display:flex;
+  justify-content: right;
+   align-items: center; 
+font-size: 14px;
+  color: #347DFC;
+  font-family: "Poppins";
+  text-align: right;
+  
+}
+.verifyotptext{
+  align-items: center; 
+ font-weight: bold;
+  font-size: 20px;
+  font-family: "Poppins";
+}
+
+.enterotpvisitortext{
+   align-items: center; 
+   padding: 1%;
+   font-size: 10px;
+   font-family: "Poppins";
+}
+.otpBox{
+  display: flex;
+  justify-content: space-between;
+ 
+}
+
+@media screen and (min-width: 240px) and (max-width: 800px) {
+  .containerotp{
+    width: 80% !important;
+    background:white;
+   
+    box-shadow: 5px 5px 25px #0000001a;
+  
+  }
+  .mainContainerotp{
+  
+    display: flex;
+    justify-content: center;
+    height: 77vh;
+   align-content: center;
+   }
+   .otpBox{
+    display: flex;
+    justify-content: space-between;
+ 
+  }
+}
+
+
+ 
+
+
+@media screen and (min-width: 801px) and (max-width: 2000px) {
+
+  .containerotp{
+    width: 25% !important;
+    background:white;
+    box-shadow: 5px 5px 25px #0000001a;
+  }
+
+
+  .otpBox{
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+}
+
+
+
+/* Recover password page css */
+
+
+
+
+.mainContainerRecover{
+  display: flex;
+  justify-content: center;
+  height: 50vh;
+ align-content: center;
+
+ }
+ .containerrecover{
+ 
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: "1px 1px 20px #ccc";
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  flex-direction: column;
+ 
+}
+
+.containerheadingtextrecover{
+  letter-spacing: 0.4px;
+  font-size: 22;
+  font-weight: bold;
+  text-align: start;
+  color: "#000000";
+  font-family: "Poppins";
+ 
+}
+
+
+
+.cancelrtextrecover{
+  display:flex;
+  justify-content: center;
+   padding: 2%;
+  color: #347DFC;
+  font-family: "Poppins";
+ 
+}
+
+.recoverBtn{
+  height: 38px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  background-color: #347dfc;
+
+  color: #fff;
+  font-family: Poppins;
+  text-transform: none;
+  font-weight: 600;
+
+}
+
+
+@media screen and (min-width: 240px) and (max-width: 800px) {
+  .containerrecover{
+    width: 70% !important;
+    background:white;
+    padding: 25px;
+    box-shadow: 5px 5px 25px #0000001a;
+    /* gap:10px */
+  }
+
+  .mainContainerRecover{
+    display: flex;
+    justify-content: center;
+    height: 90.50vh;
+   align-content: center;
+   
+   }
+ 
+   .otpBox{
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
+ 
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 2000px) {
+
+  .containerrecover{
+    width: 25% !important;
+    background:white;
+    padding: 25px;
+    box-shadow: 5px 5px 25px #0000001a;
+   
+  }
+  .mainContainerRecover{
+    display: flex;
+    justify-content: center;
+    height: 90.50vh;
+   align-content: center;
+   
+   }
+
+
+  .otpBox{
+    display: flex;
+    justify-content: space-between;
+    padding: 4%;
+  }
+}
