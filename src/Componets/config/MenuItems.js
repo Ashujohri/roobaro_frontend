@@ -2,7 +2,7 @@ export const adminRoutes = [
   {
     name: "New Visit",
     icon: "",
-    pathName: "Addvisitor",
+    pathName: "MobileVerify",
   },
   {
     name: "Show Visit",
