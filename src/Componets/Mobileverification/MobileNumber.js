@@ -4,13 +4,68 @@ import "../Roobaroo.css";
 import Header from "../Header & Drawer/Header";
 import { useNavigate } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { fontSize } from "@mui/system";
+
 export default function MobileNumber(props) {
   const [personName, setPersonName] = useState([]);
+    const [mobile, setMobile] = useState("");
+     
+ const[error,setError]=useState(false)
   var Navigate = useNavigate();
+  var dispatch=useDispatch();
 
-  const handleShowmobile = () => {
-    Navigate("/OTP");
-  };
+
+
+
+
+
+
+
+
+
+   const handleSubmit=(event)=>{
+    event.preventDefault()
+   
+    if(mobile.length==0 || mobile.length>10 ||mobile.length<10)
+    {
+      setError(true)
+    }
+    else{
+      dispatch({type:'ADD_EMPLOYEE',payload:[props.mobile]}) 
+      Navigate("/otp")
+    }
+
+      }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -43,6 +98,7 @@ export default function MobileNumber(props) {
                 type: "text",
                 placeholder: "Email/ Mobile",
                 style: { borderRadius: 13, fontFamily: "Poppins" },
+                
               }}
               label="Email/Mobile"
               fullWidth
@@ -51,10 +107,24 @@ export default function MobileNumber(props) {
               variant="outlined"
               placeholder="email"
               type="text"
+              value={mobile}
+              onChange={(event) => setMobile(event.target.value)}
             />
           </Grid>
+          {error && mobile.length<=0?
+      <div style={{textAlign:"center",color:'red' ,fontSize:15}}>Enter 10 digit mobilenumber</div>:<></>}
           <Grid item xs={12}>
-            <Button onClick={handleShowmobile} variant="contained" fullWidth>
+            <Button 
+            // onClick={handleShowmobile}
+            onClick={handleSubmit} 
+
+
+            //   onClick={()=>{
+            //   handleSubmit()
+            //  handleShowmobile()
+
+            // }}
+            variant="contained" fullWidth>
               Login
             </Button>
           </Grid>
