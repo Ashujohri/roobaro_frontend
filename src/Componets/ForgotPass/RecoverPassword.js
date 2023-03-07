@@ -4,6 +4,8 @@ import "../Roobaroo.css";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header & Drawer/Header";
 import { Divider } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 
 export default function RecoverPassword() {
   const [personName, setPersonName] = useState();
@@ -19,7 +21,13 @@ export default function RecoverPassword() {
 
   return (
     <>
-      <Header />
+      <Grid item xs={12}>
+        <div style={{ boxShadow: "1px 2px 10px lightgrey" }}>
+          <AppBar position="static" className="appbar">
+            <Toolbar></Toolbar>
+          </AppBar>
+        </div>
+      </Grid>
       <Divider style={{ width: "10%" }} />
 
       <Grid container className="mainContainerRecover">
