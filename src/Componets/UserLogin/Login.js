@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { Grid, Link } from '@mui/material';
 import { purple } from '@mui/material/colors';
 import Header from '../Header & Drawer/Header';
+import ResetPass from '../ForgotPass/ResetPass';
 import '../style.css'
 
 
@@ -55,6 +56,10 @@ export default function Login(props) {
     navigate('/Dashboard')
   };
 
+
+  const handlePassword = async () => {
+    navigate('/ResetPass')
+  };
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -106,7 +111,7 @@ export default function Login(props) {
                 </Grid>
                 <Grid item xs={6} sm={12}>
                   <div className="center">
-                    <div className='forgotcolor'>Forget Password?<span className="primarycolor ">Reset</span></div>
+                    <div className='forgotcolor' onClick={handlePassword}>Forget Password?<span className="primarycolor ">Reset</span></div>
                   </div>
                 </Grid>
               </Grid>

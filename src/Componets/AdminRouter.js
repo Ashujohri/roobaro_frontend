@@ -5,6 +5,8 @@ import Dashboard from "./Dashboard/Dashboard";
 import NewVisitorOffice from "./Mobileverification/NewVisitorOffice";
 import AddVisitorForm from "./AddVisitor/AddVisitorForm";
 import ShowVisitors from "./ShowVisitors/ShowVisitors";
+import Forgotpass from "./ForgotPass/Forgotpass";
+import ResetPass from "./ForgotPass/ResetPass";
 
 export default function AdminRouter(props) {
   return (
@@ -16,6 +18,10 @@ export default function AdminRouter(props) {
         <Route element={<NewVisitorOffice />} path="/NewVisitorOffice" />
         <Route element={<AddVisitorForm />} path="/AddVisitorForm" />
         <Route element={<ShowVisitors />} path="/ShowVisitors" />
+        <Route element={<Forgotpass />} path="Forgotpass" />
+        <Route element={<ResetPass/>} path="Resetpass" />
+        
+        
       </Routes>
     </Router>
   );

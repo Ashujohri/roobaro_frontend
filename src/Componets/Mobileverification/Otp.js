@@ -48,7 +48,8 @@ export default function Otp(props) {
 
 
   const verifyOtp=()=>{
-     alert(generateOtp)
+ 
+     alert(generateOtp + "   "+OTP)
 
      if(generateOtp==inputOtp)
      {
